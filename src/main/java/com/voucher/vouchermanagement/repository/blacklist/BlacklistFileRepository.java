@@ -4,12 +4,6 @@ import com.voucher.vouchermanagement.model.customer.Customer;
 import com.voucher.vouchermanagement.utils.deserializer.CsvDeserializer;
 import com.voucher.vouchermanagement.utils.deserializer.CustomerDeserializer;
 import com.voucher.vouchermanagement.utils.io.file.FileInput;
-
-import java.io.IOException;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,6 +11,11 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Repository;
+
+import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 @Profile({"prod", "dev"})
