@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.StringTokenizer;
 import java.util.UUID;
 
-public class VoucherDeserializer implements CsvDeserializer<Voucher> {
+public class VoucherCsvMapper implements CsvMapper<Voucher> {
     @Override
     public Voucher deserialize(String csvLine) {
         StringTokenizer stringTokenizer = new StringTokenizer(csvLine, ",");
@@ -17,5 +17,13 @@ public class VoucherDeserializer implements CsvDeserializer<Voucher> {
         LocalDateTime createdAt = LocalDateTime.parse(stringTokenizer.nextToken());
 
         return voucherType.create(id, value, createdAt);
+    }
+
+    @Override
+    public String serialize(Voucher target) {
+            return String.join(",", target.getClass().getSimpleName(),
+                    target.getVoucherId().toString(),
+                    Long.toString(target.getValue()),
+                    target.getCreatedAt().toString());
     }
 }

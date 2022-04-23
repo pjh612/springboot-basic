@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.StringTokenizer;
 import java.util.UUID;
 
-public class CustomerDeserializer implements CsvDeserializer<Customer> {
+public class CustomerCsvMapper implements CsvMapper<Customer> {
     @Override
     public Customer deserialize(String csvLine) {
         StringTokenizer stringTokenizer = new StringTokenizer(csvLine, ",");
@@ -16,5 +16,10 @@ public class CustomerDeserializer implements CsvDeserializer<Customer> {
         LocalDateTime createdAt = LocalDateTime.parse(stringTokenizer.nextToken());
 
         return new Customer(UUID.fromString(id), name, email, createdAt);
+    }
+
+    @Override
+    public String serialize(Customer target) {
+        return String.join(",", target.getId().toString(),target.getName(),target.getEmail());
     }
 }
